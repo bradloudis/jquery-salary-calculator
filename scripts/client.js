@@ -8,5 +8,10 @@ function readyUp() {
 }
 
 function addEmployee() {
-  console.log('submit button has been clicked!');
+  const firstName = $('.js-firstName').val();
+  const lastName = $('.js-lastName').val();
+  const idNumber = $('.js-idNumber').val();
+  const jobTitle = $('.js-jobTitle').val();
+  const salary = $('.js-annualSalary').val();
+  console.log(firstName, lastName, idNumber, jobTitle, salary);
 }
