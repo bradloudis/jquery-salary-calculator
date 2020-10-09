@@ -1,4 +1,4 @@
-console.log('js');
+const employeeList = [];
 
 $(document).ready(readyUp);
 
@@ -13,5 +13,11 @@ function addEmployee() {
   const idNumber = $('.js-idNumber').val();
   const jobTitle = $('.js-jobTitle').val();
   const salary = $('.js-annualSalary').val();
-  console.log(firstName, lastName, idNumber, jobTitle, salary);
+  employeeList.push({
+    firstName,
+    lastName,
+    idNumber,
+    jobTitle,
+    salary,
+  });
 }
