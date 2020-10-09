@@ -25,4 +25,11 @@ function addEmployee() {
 
 function render() {
   console.log('render is up and running!');
+  $('.js-employeeList').empty;
+  for (let i = 0; i < employeeList.length; i++) {
+    const item = employeeList[i];
+    $('.js-employeeList').append(
+      `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>${item.salary}</td></tr>`
+    );
+  }
 }
