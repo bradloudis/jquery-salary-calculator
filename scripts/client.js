@@ -20,4 +20,9 @@ function addEmployee() {
     jobTitle,
     salary,
   });
+  render();
+}
+
+function render() {
+  console.log('render is up and running!');
 }
