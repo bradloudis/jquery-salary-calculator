@@ -38,6 +38,6 @@ function render() {
     const element = employeeList[i];
     $('.js-totalMonthlyNumber').empty();
     monthly += parseInt(element.salary);
-    $('.js-totalMonthlyNumber').text(monthly);
+    $('.js-totalMonthlyNumber').text(monthly / 12);
   }
 }
