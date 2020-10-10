@@ -32,4 +32,12 @@ function render() {
       `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>$${item.salary}</td></tr>`
     );
   }
+  //update total monthly cost
+  let monthly = 0;
+  for (let i = 0; i < employeeList.length; i++) {
+    const element = employeeList[i];
+    $('.js-totalMonthlyNumber').empty();
+    monthly += parseInt(element.salary);
+    $('.js-totalMonthlyNumber').text(monthly);
+  }
 }
