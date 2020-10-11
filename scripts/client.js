@@ -48,6 +48,12 @@ function emptyFields() {
   $('.js-annualSalary').val('');
 }
 
+function emptyCheck() {
+  if (employeeList.length === 0) {
+    $('.js-totalMonthlyNumber').text(0);
+  }
+}
+
 // updates the DOM with the employee info. updates yearly variable. updates total monthly costs and highlights if over $20K
 function render() {
   let yearly = 0;
@@ -76,6 +82,7 @@ function render() {
     }
   }
   emptyFields();
+  emptyCheck();
 }
 
 // I borrowed this code from https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
