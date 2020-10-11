@@ -1,4 +1,5 @@
 const employeeList = [];
+let yearly = 0;
 
 $(document).ready(readyUp);
 
@@ -24,14 +25,17 @@ function addEmployee() {
     jobTitle,
     salary,
   });
+  yearly += parseInt(salary);
   render();
 }
 
 function deleteEmployee() {
+  const index = $(this).data('index');
+  employeeList.splice(1, index);
   // 2 parents to get up to the <tr> in the table
-  const toDelete = $(this).parent().parent();
-  console.log(toDelete);
-  toDelete.empty();
+  // const toDelete = $(this).parent().parent();
+  // console.log(toDelete);
+  // toDelete.empty();
 }
 
 function render() {
@@ -57,14 +61,20 @@ function updateMonthly() {
   //update total monthly cost
   // *** NEED TO FIX IT SO ONLY 2 DECIMAL PLACES SHOW!!!!!!!!
   let monthly = 0;
+  $('.js-totalMonthlyNumber').empty();
   for (let i = 0; i < employeeList.length; i++) {
     const element = employeeList[i];
-    $('.js-totalMonthlyNumber').empty();
-    monthly += parseInt(element.salary);
-    $('.js-totalMonthlyNumber').text(monthly / 12);
+    monthly = roundToTwo(yearly / 12);
+    $('.js-totalMonthlyNumber').text(monthly);
   }
-  if (monthly / 12 > 20000) {
+  if (monthly > 20000) {
     $('.js-totalMonthlyNumber').css('background-color', 'red');
     console.log('over 20K');
+  } else {
+    $('.js-totalMonthlyNumber').css('background-color', '');
   }
+}
+
+function roundToTwo(num) {
+  return +(Math.round(num + 'e+2') + 'e-2');
 }
