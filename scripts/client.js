@@ -18,27 +18,30 @@ function addEmployee() {
   const idNumber = $('.js-idNumber').val();
   const jobTitle = $('.js-jobTitle').val();
   const salary = $('.js-annualSalary').val();
+  let numSalary = Number(salary);
   employeeList.push({
     firstName,
     lastName,
     idNumber,
     jobTitle,
-    salary,
+    salary: numSalary,
   });
-  yearly += parseInt(salary);
   render();
 }
 
 function deleteEmployee() {
   // 2 parents to get up to the <tr> in the table
-  const toDelete = $(this).parent().parent();
-  // toDelete.empty();
-  employeeList.splice(1, toDelete);
+  $(this).parent().parent().remove();
+  const index = $(this).data('index');
+  // // toDelete.empty();
+  employeeList.splice(index, 1);
+
   render();
 }
 
 function render() {
-  console.log('render is up and running!');
+  // console.log('render is up and running!');
+  let yearly = 0;
   $('.js-employeeList').empty();
   for (let i = 0; i < employeeList.length; i++) {
     const item = employeeList[i];
@@ -52,27 +55,32 @@ function render() {
         <td><button class="js-deleteBtn" data-index="${i}">Delete</button></td>
       </tr>`
     );
-  }
-  updateMonthly();
-}
-
-function updateMonthly() {
-  //update total monthly cost
-  // *** NEED TO FIX IT SO ONLY 2 DECIMAL PLACES SHOW!!!!!!!!
-  let monthly = 0;
-  $('.js-totalMonthlyNumber').empty();
-  for (let i = 0; i < employeeList.length; i++) {
-    const element = employeeList[i];
+    yearly += item.salary;
+    $('.js-totalMonthlyNumber').empty();
     monthly = roundToTwo(yearly / 12);
     $('.js-totalMonthlyNumber').text(monthly);
+    console.log(monthly);
   }
-  if (monthly > 20000) {
-    $('.js-totalMonthlyNumber').css('background-color', 'red');
-    console.log('over 20K');
-  } else {
-    $('.js-totalMonthlyNumber').css('background-color', '');
-  }
+  // updateMonthly();
 }
+
+// function updateMonthly() {
+//   //update total monthly cost
+//   // *** NEED TO FIX IT SO ONLY 2 DECIMAL PLACES SHOW!!!!!!!!
+//   let monthly = 0;
+//   $('.js-totalMonthlyNumber').empty();
+//   for (let i = 0; i < employeeList.length; i++) {
+//     const element = employeeList[i];
+//     monthly = roundToTwo(yearly / 12);
+//     $('.js-totalMonthlyNumber').text(monthly);
+//   }
+//   if (monthly > 20000) {
+//     $('.js-totalMonthlyNumber').css('background-color', 'red');
+//     console.log('over 20K');
+//   } else {
+//     $('.js-totalMonthlyNumber').css('background-color', '');
+//   }
+// }
 
 function roundToTwo(num) {
   return +(Math.round(num + 'e+2') + 'e-2');
