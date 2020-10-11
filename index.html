@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>JQUERY Salary Calculator</h1>
-    <div>
+    <div class="container">
       <h2>Add Employee</h2>
       <input class="js-firstName" type="text" placeholder="First Name" />
       <input class="js-lastName" type="text" placeholder="Last Name" />
@@ -24,7 +24,7 @@
       <button class="btn js-submitButton">Submit</button>
     </div>
     <h2>Employees</h2>
-    <div>
+    <div class="container">
       <table class="employeeTable">
         <thead>
           <tr>
@@ -39,9 +39,15 @@
         <tbody class="js-employeeList">
           <!-- employees added here! -->
         </tbody>
-        <tfoot></tfoot>
+        <tfoot>
+          <tr>
+            <td colspan="4"></td>
+            <td colspan="2">
+              Total Monthly Costs: $<span class="js-totalMonthlyNumber">0</span>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
-    <h3>Total Monthly Costs: $<span class="js-totalMonthlyNumber">0</span></h3>
   </body>
 </html>
