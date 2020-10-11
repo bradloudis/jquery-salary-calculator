@@ -5,6 +5,7 @@ $(document).ready(readyUp);
 function readyUp() {
   console.log('JQ readyUp is working!');
   $('.js-submitButton').on('click', addEmployee);
+  // line of code to call deleteEmployee()
 }
 
 function addEmployee() {
@@ -23,13 +24,22 @@ function addEmployee() {
   render();
 }
 
+function deleteEmployee() {}
+
 function render() {
   console.log('render is up and running!');
   $('.js-employeeList').empty();
   for (let i = 0; i < employeeList.length; i++) {
     const item = employeeList[i];
     $('.js-employeeList').append(
-      `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>$${item.salary}</td><td><button class="js-deleteBtn">Delete</button></td></tr>`
+      `<tr>
+        <td>${item.firstName}</td>
+        <td>${item.lastName}</td>
+        <td>${item.idNumber}</td>
+        <td>${item.jobTitle}</td>
+        <td>$${item.salary}</td>
+        <td><button class="js-deleteBtn">Delete</button></td>
+      </tr>`
     );
   }
   updateMonthly();
