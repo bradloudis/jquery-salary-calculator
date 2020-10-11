@@ -29,7 +29,7 @@ function render() {
   for (let i = 0; i < employeeList.length; i++) {
     const item = employeeList[i];
     $('.js-employeeList').append(
-      `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>$${item.salary}</td></tr>`
+      `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>$${item.salary}</td><td><button class="js-deleteBtn">Delete</button></td></tr>`
     );
   }
   updateMonthly();
