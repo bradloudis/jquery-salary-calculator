@@ -30,12 +30,11 @@ function addEmployee() {
 }
 
 function deleteEmployee() {
-  const index = $(this).data('index');
-  employeeList.splice(1, index);
   // 2 parents to get up to the <tr> in the table
-  // const toDelete = $(this).parent().parent();
-  // console.log(toDelete);
+  const toDelete = $(this).parent().parent();
   // toDelete.empty();
+  employeeList.splice(1, toDelete);
+  render();
 }
 
 function render() {
@@ -50,7 +49,7 @@ function render() {
         <td>${item.idNumber}</td>
         <td>${item.jobTitle}</td>
         <td>$${item.salary}</td>
-        <td><button class="js-deleteBtn">Delete</button></td>
+        <td><button class="js-deleteBtn" data-index="${i}">Delete</button></td>
       </tr>`
     );
   }
