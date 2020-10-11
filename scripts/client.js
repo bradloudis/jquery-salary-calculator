@@ -8,7 +8,7 @@ function readyUp() {
   $('.js-submitButton').on('click', addEmployee);
   // line of code to call deleteEmployee()
   // event listener for children of targeted element
-  $('.js-employeeList').on('click', 'selector', deleteEmployee);
+  $('.js-employeeList').on('click', '.js-deleteBtn', deleteEmployee);
 }
 
 function addEmployee() {
@@ -31,6 +31,7 @@ function deleteEmployee() {
   // 2 parents to get up to the <tr> in the table
   const toDelete = $(this).parent().parent();
   console.log(toDelete);
+  toDelete.empty();
 }
 
 function render() {
