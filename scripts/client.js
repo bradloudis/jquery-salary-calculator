@@ -40,4 +40,8 @@ function render() {
     monthly += parseInt(element.salary);
     $('.js-totalMonthlyNumber').text(monthly / 12);
   }
+  if (monthly / 12 > 20000) {
+    $('.js-totalMonthlyNumber').css('background-color', 'red');
+    console.log('over 20K');
+  }
 }
