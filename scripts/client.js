@@ -32,7 +32,12 @@ function render() {
       `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.idNumber}</td><td>${item.jobTitle}</td><td>$${item.salary}</td></tr>`
     );
   }
+  updateMonthly();
+}
+
+function updateMonthly() {
   //update total monthly cost
+  // *** NEED TO FIX IT SO ONLY 2 DECIMAL PLACES SHOW!!!!!!!!
   let monthly = 0;
   for (let i = 0; i < employeeList.length; i++) {
     const element = employeeList[i];
