@@ -12,6 +12,7 @@ function readyUp() {
   $('.js-employeeList').on('click', '.js-deleteBtn', deleteEmployee);
 }
 
+// compiles all input fields into an object that is pushed into the employeeList array
 function addEmployee() {
   const firstName = $('.js-firstName').val();
   const lastName = $('.js-lastName').val();
@@ -29,18 +30,26 @@ function addEmployee() {
   render();
 }
 
+// when delete btn is clicked - removes that employee's info from the DOM and splices their object from the array
 function deleteEmployee() {
   // 2 parents to get up to the <tr> in the table
   $(this).parent().parent().remove();
   const index = $(this).data('index');
-  // // toDelete.empty();
   employeeList.splice(index, 1);
-
   render();
 }
 
+// empties input fields
+function emptyFields() {
+  $('.js-firstName').val('');
+  $('.js-lastName').val('');
+  $('.js-idNumber').val('');
+  $('.js-jobTitle').val('');
+  $('.js-annualSalary').val('');
+}
+
+// updates the DOM with the employee info. updates yearly variable. updates total monthly costs and highlights if over $20K
 function render() {
-  // console.log('render is up and running!');
   let yearly = 0;
   $('.js-employeeList').empty();
   for (let i = 0; i < employeeList.length; i++) {
@@ -55,33 +64,21 @@ function render() {
         <td><button class="js-deleteBtn" data-index="${i}">Delete</button></td>
       </tr>`
     );
+    // as a note! line 55 - data-index="${i}" basically gives that specific delete btn a 'nametag' to be used later in deleteEmployee()
     yearly += item.salary;
     $('.js-totalMonthlyNumber').empty();
     monthly = roundToTwo(yearly / 12);
     $('.js-totalMonthlyNumber').text(monthly);
-    console.log(monthly);
+    if (monthly > 20000) {
+      $('.js-totalMonthlyNumber').css('background-color', 'red');
+    } else {
+      $('.js-totalMonthlyNumber').css('background-color', '');
+    }
   }
-  // updateMonthly();
+  emptyFields();
 }
 
-// function updateMonthly() {
-//   //update total monthly cost
-//   // *** NEED TO FIX IT SO ONLY 2 DECIMAL PLACES SHOW!!!!!!!!
-//   let monthly = 0;
-//   $('.js-totalMonthlyNumber').empty();
-//   for (let i = 0; i < employeeList.length; i++) {
-//     const element = employeeList[i];
-//     monthly = roundToTwo(yearly / 12);
-//     $('.js-totalMonthlyNumber').text(monthly);
-//   }
-//   if (monthly > 20000) {
-//     $('.js-totalMonthlyNumber').css('background-color', 'red');
-//     console.log('over 20K');
-//   } else {
-//     $('.js-totalMonthlyNumber').css('background-color', '');
-//   }
-// }
-
+// I borrowed this code from https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
 function roundToTwo(num) {
   return +(Math.round(num + 'e+2') + 'e-2');
 }
