@@ -6,4 +6,11 @@ Creating a web application that a user can use to enter the following employee i
 
 <!-- Your project description goes here. What problem did you solve? How did you solve it? -->
 
+## Built With
+
+HTML
+CSS
+JavaScript
+jQuery library
+
 <!-- Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md). -->
