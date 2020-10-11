@@ -4,8 +4,11 @@ $(document).ready(readyUp);
 
 function readyUp() {
   console.log('JQ readyUp is working!');
+  // event listener for targeted element
   $('.js-submitButton').on('click', addEmployee);
   // line of code to call deleteEmployee()
+  // event listener for children of targeted element
+  $('.js-employeeList').on('click', 'selector', deleteEmployee);
 }
 
 function addEmployee() {
@@ -24,7 +27,11 @@ function addEmployee() {
   render();
 }
 
-function deleteEmployee() {}
+function deleteEmployee() {
+  // 2 parents to get up to the <tr> in the table
+  const toDelete = $(this).parent().parent();
+  console.log(toDelete);
+}
 
 function render() {
   console.log('render is up and running!');
